@@ -8,14 +8,14 @@ import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
 
 public class ArithmeticExpression
 {
-	private BinaryOperator root;
+	private Operand root;
 	
 	public Integer evaluate()
 	{
 		return root.evaluate();
 	}
 	
-	public void setRoot(BinaryOperator root)
+	public void setRoot(Operand root)
 	{
 		this.root = root;
 	}
@@ -25,7 +25,7 @@ public class ArithmeticExpression
 	 * 
 	 * @deprecated Do not provide access to the inner representation
 	 */
-	public BinaryOperator getRoot()
+	public Operand getRoot()
 	{
 		throw new UnsupportedOperationException();
 	}
