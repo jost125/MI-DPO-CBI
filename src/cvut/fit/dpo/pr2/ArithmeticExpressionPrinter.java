@@ -5,6 +5,8 @@ import cvut.fit.dpo.arithmetic.ArithmeticExpression;
 import cvut.fit.dpo.arithmetic.BinaryOperator;
 import cvut.fit.dpo.arithmetic.NumericOperand;
 import cvut.fit.dpo.arithmetic.SubstractOperator;
+import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
+import java.util.Iterator;
 
 /**
  * Printer for {@link ArithmeticExpression}s. It can print
@@ -43,57 +45,13 @@ public class ArithmeticExpressionPrinter
 	 */
 	public String printInOrder()
 	{
-		// Remember, do not use the getRoot() method!
-		// The iterator may help :)
-		BinaryOperator root = expression.getRoot();
-		String operator = binaryOperatorToString(root);
 
-		String lString = printInOrder(root.getFirstOperand());
-		String rString = printInOrder(root.getSecondOperand());
-
-		return "(" + lString + operator + rString + ")";
-	}
-
-	private String printInOrder(Object o)
-	{
-		if (o instanceof NumericOperand)
-		{
-			return printInOrder((NumericOperand) o);
+		StringBuilder sb = new StringBuilder();
+		for (Iterator<ExpressionElement> it = expression.getInOrderIterator(); it.hasNext();) {
+			sb.append(it.next().stringValue());
 		}
 
-		if (o instanceof BinaryOperator)
-		{
-			return printInOrder((BinaryOperator) o);
-		}
-
-		throw new IllegalArgumentException("Unknown argument");
-	}
-
-	private String printInOrder(NumericOperand o)
-	{
-		return o.getValue().toString();
-	}
-
-	private String printInOrder(BinaryOperator o)
-	{
-		return "(" + printInOrder(o.getFirstOperand())
-				+ binaryOperatorToString(o)
-				+ printInOrder(o.getSecondOperand()) + ")";
-	}
-
-	private String binaryOperatorToString(BinaryOperator o)
-	{
-		if (o instanceof AddOperator)
-		{
-			return PLUS_OPERATOR_STRING;
-		}
-
-		if (o instanceof SubstractOperator)
-		{
-			return SUBSTRACT_OPERATOR_STRING;
-		}
-
-		return ANY_BINARY_OPERATOR_STRING;
+		return sb.toString();
 	}
 
 	/**
@@ -106,42 +64,14 @@ public class ArithmeticExpressionPrinter
 	 */
 	public String printPostOrder()
 	{
-		// Remember, do not use the getRoot() method!
-		// The iterator may help :)
-		
-		BinaryOperator root = expression.getRoot();
-		String operator = binaryOperatorToString(root);
-
-		String lString = printPostOrder(root.getFirstOperand());
-		String rString = printPostOrder(root.getSecondOperand());
-
-		return lString + " " + rString + " " + operator;
-	}
-
-	private String printPostOrder(Object o)
-	{
-		if (o instanceof NumericOperand)
-		{
-			return printPostOrder((NumericOperand) o);
+		StringBuilder sb = new StringBuilder();
+		for (Iterator<ExpressionElement> it = expression.getPostOrderIterator(); it.hasNext();) {
+			sb.append(it.next().stringValue());
+			if (it.hasNext()) {
+				sb.append(" ");
+			}
 		}
 
-		if (o instanceof BinaryOperator)
-		{
-			return printPostOrder((BinaryOperator) o);
-		}
-
-		throw new IllegalArgumentException("Unknown argument");
-	}
-
-	private String printPostOrder(NumericOperand o)
-	{
-		return o.getValue().toString();
-	}
-
-	private String printPostOrder(BinaryOperator o)
-	{
-		return printPostOrder(o.getFirstOperand()) + " "
-				+ printPostOrder(o.getSecondOperand()) + " "
-				+ binaryOperatorToString(o);
+		return sb.toString();
 	}
 }
