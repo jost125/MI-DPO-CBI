@@ -9,7 +9,7 @@ abstract public class Operand {
 	private PostOrderIterator postOrderIterator = null;
 
 	abstract protected InOrderIterator createInOrderIterator();
-	abstract protected PostOrderIterator createPostIterator();
+	abstract protected PostOrderIterator createPostOrderIterator();
 
 	public InOrderIterator getInOrderIterator() {
 		if (inOrderIterator == null) {
@@ -20,7 +20,7 @@ abstract public class Operand {
 
 	public PostOrderIterator getPostOrderIterator() {
 		if (postOrderIterator == null) {
-			postOrderIterator = createPostIterator();
+			postOrderIterator = createPostOrderIterator();
 		}
 		return postOrderIterator;
 	}

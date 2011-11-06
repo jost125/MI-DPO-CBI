@@ -25,11 +25,11 @@ public class SubstractOperator extends BinaryOperator
 
 	@Override
 	public InOrderIterator createInOrderIterator() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return new SubtractInOrderIterator(this);
 	}
 
 	@Override
-	public PostOrderIterator createPostIterator() {
+	public PostOrderIterator createPostOrderIterator() {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 

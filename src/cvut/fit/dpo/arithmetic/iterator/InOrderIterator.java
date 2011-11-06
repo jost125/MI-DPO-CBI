@@ -1,31 +1,17 @@
 package cvut.fit.dpo.arithmetic.iterator;
 
+import cvut.fit.dpo.arithmetic.Operand;
 import java.util.Iterator;
 
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 
-public class InOrderIterator implements Iterator<ExpressionElement>
+abstract public class InOrderIterator implements Iterator<ExpressionElement>
 {
 
-	@Override
-	public boolean hasNext()
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
+	protected Operand operand;
 
-	@Override
-	public ExpressionElement next()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void remove()
-	{
-		// TODO Auto-generated method stub
-		
+	public InOrderIterator(Operand operand) {
+		this.operand = operand;
 	}
 
 }

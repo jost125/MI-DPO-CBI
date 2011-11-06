@@ -37,7 +37,7 @@ public class ArithmeticExpression
 	 */
 	public Iterator<ExpressionElement> getInOrderIterator()
 	{
-		return new InOrderIterator(this.root);
+		return this.root.getInOrderIterator();
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class ArithmeticExpression
 	 */
 	public Iterator<ExpressionElement> getPostOrderIterator()
 	{
-		return new PostOrderIterator(this.root);
+		return this.root.getPostOrderIterator();
 	}
 
 }
