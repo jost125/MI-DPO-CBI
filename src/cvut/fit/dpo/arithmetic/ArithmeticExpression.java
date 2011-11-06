@@ -3,6 +3,8 @@ package cvut.fit.dpo.arithmetic;
 import java.util.Iterator;
 
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
+import cvut.fit.dpo.arithmetic.iterator.InOrderIterator;
+import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
 
 public class ArithmeticExpression
 {
@@ -25,7 +27,7 @@ public class ArithmeticExpression
 	 */
 	public BinaryOperator getRoot()
 	{
-		return root;
+		throw new UnsupportedOperationException();
 	}
 	
 	/**
@@ -35,7 +37,7 @@ public class ArithmeticExpression
 	 */
 	public Iterator<ExpressionElement> getInOrderIterator()
 	{
-		throw new UnsupportedOperationException("Not yet implemented...");
+		return new InOrderIterator(this.root);
 	}
 
 	/**
@@ -47,7 +49,7 @@ public class ArithmeticExpression
 	 */
 	public Iterator<ExpressionElement> getPostOrderIterator()
 	{
-		throw new UnsupportedOperationException("Not yet implemented...");
+		return new PostOrderIterator(this.root);
 	}
 
 }

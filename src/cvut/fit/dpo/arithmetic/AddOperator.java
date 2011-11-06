@@ -1,5 +1,8 @@
 package cvut.fit.dpo.arithmetic;
 
+import cvut.fit.dpo.arithmetic.iterator.InOrderIterator;
+import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
+
 /**
  * Represents + operation
  * 
@@ -9,7 +12,7 @@ package cvut.fit.dpo.arithmetic;
 public class AddOperator extends BinaryOperator
 {
 
-	public AddOperator(Object firstOperand, Object secondOperand)
+	public AddOperator(Operand firstOperand, Operand secondOperand)
 	{
 		super(firstOperand, secondOperand);
 	}
@@ -18,6 +21,16 @@ public class AddOperator extends BinaryOperator
 	protected Integer evaluate(Integer val1, Integer val2)
 	{
 		return val1 + val2;
+	}
+
+	@Override
+	public InOrderIterator createInOrderIterator() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public PostOrderIterator createPostIterator() {
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 }

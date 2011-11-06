@@ -8,7 +8,7 @@ import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
  * 
  * @author Jan Kurš
  */
-public class NumericOperand {
+public class NumericOperand extends Operand {
 	private Integer value;
 	
 	public NumericOperand(Integer value)
@@ -25,15 +25,16 @@ public class NumericOperand {
 	{
 		this.value = value;
 	}
-	
-	public InOrderIterator inOrderIterator()
-	{
-		return null;
+
+	@Override
+	public InOrderIterator createInOrderIterator() {
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-	public PostOrderIterator postOrderIterator()
-	{
-		return null;
+	@Override
+	public PostOrderIterator createPostIterator() {
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
-	
+
+
 }

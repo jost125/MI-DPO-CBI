@@ -9,34 +9,34 @@ import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
  * @author Jan Kurš
  *
  */
-public abstract class BinaryOperator
+public abstract class BinaryOperator extends Operand
 {
-	private Object firstOperand;
-	private Object secondOperand;
+	private Operand firstOperand;
+	private Operand secondOperand;
 
 	protected abstract Integer evaluate(Integer val1, Integer val2);
 	
-	public BinaryOperator(Object firstOperand, Object secondOperand)
+	public BinaryOperator(Operand firstOperand, Operand secondOperand)
 	{
 		setFirstOperand(firstOperand);
 		setSecondOperand(secondOperand);
 	}
 	
-	void setFirstOperand(Object o)
+	void setFirstOperand(Operand o)
 	{
 		firstOperand = o;
 	}
-	void setSecondOperand(Object o)
+	void setSecondOperand(Operand o)
 	{
 		secondOperand = o;
 	}
 	
-	public Object getFirstOperand()
+	public Operand getFirstOperand()
 	{
 		return firstOperand;
 	}
 	
-	public Object getSecondOperand()
+	public Operand getSecondOperand()
 	{
 		return secondOperand;
 	}
@@ -48,17 +48,6 @@ public abstract class BinaryOperator
 		
 		return evaluate(val1, val2);
 	}
-	
-	public InOrderIterator inOrderIterator()
-	{
-		return null;
-	}
-
-	public PostOrderIterator postOrderIterator()
-	{
-		return null;
-	}
-	
 	
 	private Integer getOperandValue(Object o)
 	{
