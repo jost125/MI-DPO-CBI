@@ -3,6 +3,7 @@ package cvut.fit.dpo.arithmetic;
 import cvut.fit.dpo.arithmetic.iterator.InOrderIterator;
 import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
 import cvut.fit.dpo.arithmetic.iterator.SubtractInOrderIterator;
+import cvut.fit.dpo.arithmetic.iterator.SubtractPostOrderIterator;
 
 /**
  * Represents - operation
@@ -30,7 +31,7 @@ public class SubstractOperator extends BinaryOperator
 
 	@Override
 	public PostOrderIterator createPostOrderIterator() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return new SubtractPostOrderIterator(this);
 	}
 
 }

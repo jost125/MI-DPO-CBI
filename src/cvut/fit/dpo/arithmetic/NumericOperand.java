@@ -2,6 +2,7 @@ package cvut.fit.dpo.arithmetic;
 
 import cvut.fit.dpo.arithmetic.iterator.InOrderIterator;
 import cvut.fit.dpo.arithmetic.iterator.NumericInOrderIterator;
+import cvut.fit.dpo.arithmetic.iterator.NumericPostOrderIterator;
 import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
 
 /**
@@ -34,8 +35,11 @@ public class NumericOperand extends Operand {
 
 	@Override
 	public PostOrderIterator createPostOrderIterator() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return new NumericPostOrderIterator(this);
 	}
 
+	public Integer evaluate() {
+		return value;
+	}
 
 }

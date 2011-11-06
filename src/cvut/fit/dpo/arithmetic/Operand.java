@@ -10,6 +10,7 @@ abstract public class Operand {
 
 	abstract protected InOrderIterator createInOrderIterator();
 	abstract protected PostOrderIterator createPostOrderIterator();
+	abstract public Integer evaluate();
 
 	public InOrderIterator getInOrderIterator() {
 		if (inOrderIterator == null) {

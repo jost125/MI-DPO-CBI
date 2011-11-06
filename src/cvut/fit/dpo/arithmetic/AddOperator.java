@@ -1,6 +1,7 @@
 package cvut.fit.dpo.arithmetic;
 
 import cvut.fit.dpo.arithmetic.iterator.AddInOrderIterator;
+import cvut.fit.dpo.arithmetic.iterator.AddPostOrderIterator;
 import cvut.fit.dpo.arithmetic.iterator.InOrderIterator;
 import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
 
@@ -31,7 +32,7 @@ public class AddOperator extends BinaryOperator
 
 	@Override
 	public PostOrderIterator createPostOrderIterator() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return new AddPostOrderIterator(this);
 	}
 
 }
