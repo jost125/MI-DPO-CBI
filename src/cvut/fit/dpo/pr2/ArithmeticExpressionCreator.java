@@ -26,8 +26,6 @@ public class ArithmeticExpressionCreator
 	 */
 	public ArithmeticExpression createExpression1()
 	{
-		ArithmeticExpression e = new ArithmeticExpression();
-		
 		NumericOperand op1 = new NumericOperand(1);
 		NumericOperand op2 = new NumericOperand(2);
 		NumericOperand op3 = new NumericOperand(3);
@@ -35,8 +33,7 @@ public class ArithmeticExpressionCreator
 		BinaryOperator o2 = new AddOperator(op1, op2);
 		BinaryOperator o1 = new SubstractOperator(op3, o2);
 		
-		e.setRoot(o1);
-		return e;
+		return new ArithmeticExpression(o1);
 	}
 
 	/**
@@ -47,7 +44,6 @@ public class ArithmeticExpressionCreator
 	 */
 	public ArithmeticExpression createExpression2()
 	{
-		ArithmeticExpression e = new ArithmeticExpression();
 		
 		NumericOperand op1 = new NumericOperand(1);
 		NumericOperand op2 = new NumericOperand(2);
@@ -56,8 +52,7 @@ public class ArithmeticExpressionCreator
 		BinaryOperator o1 = new SubstractOperator(op3, op1);
 		BinaryOperator o2 = new AddOperator(o1, op2);
 		
-		e.setRoot(o2);
-		return e;
+		return new ArithmeticExpression(o2);
 	}
 	
 	/**
@@ -82,35 +77,33 @@ public class ArithmeticExpressionCreator
 			String item = scanner.next();
 
 			Integer integer = this.tryParseInteger(item);
+			
 			if (integer != null) {
 				stack.push(new NumericOperand(integer));
-			} else if (item.length() > 1) {
+
+			} else if (item.equals("+")) {
+				Operand right = stack.pop();
+				Operand left = stack.pop();
+				stack.push(new AddOperator(left, right));
+
+			} else if (item.equals("-")) {
+				Operand right = stack.pop();
+				Operand left = stack.pop();
+				stack.push(new SubstractOperator(left, right));
+
+			} else {
 				throw new IllegalArgumentException();
-			} else if (item.charAt(0) == '+') {
-				Operand right = stack.pop();
-				Operand left = stack.pop();
-				Operand result = new AddOperator(left, right);
-				stack.push(result);
-			} else if (item.charAt(0) == '-') {
-				Operand right = stack.pop();
-				Operand left = stack.pop();
-				Operand result = new SubstractOperator(left, right);
-				stack.push(result);
 			}
 		}
 		
-		ArithmeticExpression expression = new ArithmeticExpression();
-
-		expression.setRoot(stack.pop());
-
-		return expression;
+		return new ArithmeticExpression(stack.pop());
 	}
 
 	/**
 	 * Java WTF with non existing tryParse on Integer class.
 	 *
-	 * @param integer
-	 * @return
+	 * @param String integer
+	 * @return Integer
 	 */
 	private Integer tryParseInteger(String integer) {
 		try {
