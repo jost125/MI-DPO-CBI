@@ -1,13 +1,9 @@
 package cvut.fit.dpo.arithmetic.elements;
 
-
-public class CloseBracketOperation implements ExpressionElement
-{
+public class CloseBracketOperation implements ExpressionElement {
 
 	@Override
-	public String stringValue()
-	{
+	public String stringValue() {
 		return ")";
 	}
-
 }
