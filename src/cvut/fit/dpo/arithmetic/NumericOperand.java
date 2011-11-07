@@ -11,35 +11,46 @@ import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
  * @author Jan Kurš
  */
 public class NumericOperand extends Operand {
+
 	private Integer value;
-	
-	public NumericOperand(Integer value)
-	{
-		setValue(value);
-	}
-	
-	public Integer getValue()
-	{
-		return value;
-	}
-	
-	public void setValue(Integer value)
-	{
+
+	/**
+	 * @param Integer value
+	 */
+	public NumericOperand(Integer value) {
 		this.value = value;
 	}
 
+	/**
+	 * Actual value of number.
+	 *
+	 * @return Integer
+	 */
+	public Integer getValue() {
+		return value;
+	}
+
+	/**
+	 * @return InOrderIterator
+	 */
 	@Override
 	public InOrderIterator createInOrderIterator() {
 		return new NumericInOrderIterator(this);
 	}
 
+	/**
+	 * @return PostOrderIterator
+	 */
 	@Override
 	public PostOrderIterator createPostOrderIterator() {
 		return new NumericPostOrderIterator(this);
 	}
 
+	/**
+	 * @return Integer
+	 */
+	@Override
 	public Integer evaluate() {
 		return value;
 	}
-
 }
