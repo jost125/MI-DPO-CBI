@@ -4,10 +4,10 @@ import cvut.fit.dpo.arithmetic.AddOperator;
 import cvut.fit.dpo.arithmetic.ArithmeticExpression;
 import cvut.fit.dpo.arithmetic.BinaryOperator;
 import cvut.fit.dpo.arithmetic.NumericOperand;
-import cvut.fit.dpo.arithmetic.Operand;
 import cvut.fit.dpo.arithmetic.SubstractOperator;
+import cvut.fit.dpo.arithmetic.builder.ExpressionBuilder;
+import cvut.fit.dpo.arithmetic.builder.RPNExpressionBuilder;
 import java.util.Scanner;
-import java.util.Stack;
 
 /**
  * Stupid class which can create some {@link ArithmeticExpression}s.
@@ -22,6 +22,9 @@ public class ArithmeticExpressionCreator {
 	 * 
 	 * This is ugly. I don't like creating expressions in this
 	 * 	form. I never know, what expression I have created...
+	 *
+	 * Dunno if it should be changed, but I doubt it. So left how it was expect
+	 * passing root in constructor.
 	 */
 	public ArithmeticExpression createExpression1() {
 		NumericOperand op1 = new NumericOperand(1);
@@ -39,6 +42,9 @@ public class ArithmeticExpressionCreator {
 	 *
 	 * This is ugly. I don't like creating expressions in this
 	 * 	form. I never know, what expression I have created...
+	 * 
+	 * Dunno if it should be changed, but I doubt it. So left how it was expect
+	 * passing root in constructor.
 	 */
 	public ArithmeticExpression createExpression2() {
 
@@ -54,7 +60,9 @@ public class ArithmeticExpressionCreator {
 
 	/**
 	 * Creates any expression from the RPN input. This is nice and
-	 * 	universal. 
+	 * 	universal.
+	 *
+	 * Using builder pattern for expression building.
 	 * 
 	 * @see http://en.wikipedia.org/wiki/Reverse_Polish_notation
 	 * 	
@@ -64,42 +72,36 @@ public class ArithmeticExpressionCreator {
 	public ArithmeticExpression createExpressionFromRPN(String input) {
 
 		if (input.length() == 0) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("No input");
 		}
 
-		Stack<Operand> stack = new Stack<Operand>();
+		ExpressionBuilder builder = new RPNExpressionBuilder();
 
 		for (Scanner scanner = new Scanner(input); scanner.hasNext();) {
 			String item = scanner.next();
 
-			Integer integer = this.tryParseInteger(item);
+			Integer number = this.tryParseInteger(item);
 
-			if (integer != null) {
-				stack.push(new NumericOperand(integer));
+			if (number != null) { // It's number
+				builder.buildNumericOperand(number);
 
 			} else if (item.equals("+")) {
-				Operand right = stack.pop();
-				Operand left = stack.pop();
-				stack.push(new AddOperator(left, right));
+				builder.buildAddOperator();
 
 			} else if (item.equals("-")) {
-				Operand right = stack.pop();
-				Operand left = stack.pop();
-				stack.push(new SubstractOperator(left, right));
+				builder.buildSubstractOperator();
 
 			} else {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Ilegal string: " + item);
 			}
 		}
 
-		if (stack.size() != 1) {
-			throw new IllegalArgumentException();
-		}
-		return new ArithmeticExpression(stack.pop());
+		return builder.getExpression();
 	}
 
 	/**
-	 * Java WTF with non existing tryParse on Integer class.
+	 * Ugly checking if the string is integer or not because of Java WTF with
+	 * non-existing tryParse on Integer class.
 	 *
 	 * @param String integer
 	 * @return Integer
@@ -107,7 +109,7 @@ public class ArithmeticExpressionCreator {
 	private Integer tryParseInteger(String integer) {
 		try {
 			return Integer.parseInt(integer);
-		} catch (NumberFormatException ex) {
+		} catch (NumberFormatException ex) { // possible performace issue
 			return null;
 		}
 	}
