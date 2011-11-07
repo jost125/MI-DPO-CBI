@@ -1,43 +1,35 @@
 package cvut.fit.dpo.arithmetic.iterator;
 
-import cvut.fit.dpo.arithmetic.iterator.states.OperandIteratorState;
 import cvut.fit.dpo.arithmetic.NumericOperand;
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
-import cvut.fit.dpo.arithmetic.elements.Number;
 
+/**
+ * Delegate to NumericIterator.
+ *
+ * @author Jan Machala <jan.machala@email.cz>
+ */
 public class NumericPostOrderIterator extends PostOrderIterator {
 
-	private ExpressionElement current;
-
-	private OperandIteratorState state = OperandIteratorState.OPENED;
+	private NumericIterator numericOperator;
 
 	public NumericPostOrderIterator(NumericOperand operand) {
 		super(operand);
-		current = null;
+		this.numericOperator = new NumericIterator(operand);
 	}
 
 	@Override
 	public boolean hasNext() {
-		return !(state == OperandIteratorState.CLOSED);
+		return numericOperator.hasNext();
 	}
 
 	@Override
 	public ExpressionElement next() {
-		NumericOperand numericOperand = (NumericOperand)operand;
-		switch (state) {
-			case OPENED:
-				current = new Number(numericOperand.getValue());
-				state = OperandIteratorState.CLOSED;
-				break;
-		}
-		
-		return current;
+		return numericOperator.next();
 	}
 
 	@Override
 	public void remove() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		numericOperator.remove();
 	}
-
 
 }

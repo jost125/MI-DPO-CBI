@@ -5,13 +5,11 @@ import java.util.Iterator;
 
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 
-abstract public class InOrderIterator implements Iterator<ExpressionElement>
-{
+abstract public class InOrderIterator implements Iterator<ExpressionElement> {
 
 	protected Operand operand;
 
 	public InOrderIterator(Operand operand) {
 		this.operand = operand;
 	}
-
 }
