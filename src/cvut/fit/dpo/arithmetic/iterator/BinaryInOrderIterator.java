@@ -6,6 +6,12 @@ import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 import cvut.fit.dpo.arithmetic.elements.OpenBracketOperation;
 import cvut.fit.dpo.arithmetic.iterator.states.OperandIteratorState;
 
+/**
+ * Abstract in order iterator for binary operations. Implements equal
+ * behavior for + and -.
+ *
+ * @author Jan Machala <jan.machala@email.cz>
+ */
 abstract public class BinaryInOrderIterator extends InOrderIterator {
 
 	private ExpressionElement current;

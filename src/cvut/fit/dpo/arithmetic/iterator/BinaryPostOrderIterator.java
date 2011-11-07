@@ -4,6 +4,12 @@ import cvut.fit.dpo.arithmetic.BinaryOperator;
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 import cvut.fit.dpo.arithmetic.iterator.states.OperandIteratorState;
 
+/**
+ * Abstract post order iterator for binary operations. Implements equal
+ * behavior for + and -.
+ *
+ * @author Jan Machala <jan.machala@email.cz>
+ */
 abstract public class BinaryPostOrderIterator extends PostOrderIterator {
 
 	private ExpressionElement current;

@@ -7,6 +7,13 @@ import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 import cvut.fit.dpo.arithmetic.elements.Number;
 import java.util.Iterator;
 
+/**
+ * Numeric iterator is same for in order and post order.
+ *
+ * It returns only one number.
+ *
+ * @author Jan Machala <jan.machala@email.cz>
+ */
 public class NumericIterator implements Iterator<ExpressionElement> {
 
 	private ExpressionElement current;

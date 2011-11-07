@@ -4,6 +4,13 @@ import java.util.Iterator;
 
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 
+/**
+ * Represents arithmetic expression (including standalone number).
+ *
+ * Its "Client" from Composite pattern.
+ *
+ * @author Jan Machala <jan.machala@email.cz>
+ */
 public class ArithmeticExpression {
 
 	private Operand root;

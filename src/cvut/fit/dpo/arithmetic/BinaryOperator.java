@@ -2,6 +2,8 @@ package cvut.fit.dpo.arithmetic;
 
 /**
  * Represents the Binary operations like + - etc.
+ *
+ * It the "Composite" from Composite pattern.
  * 
  * @author Jan Kurš
  *

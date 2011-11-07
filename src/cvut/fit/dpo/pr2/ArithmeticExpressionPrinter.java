@@ -14,7 +14,9 @@ import java.util.Iterator;
  * 
  * PostOrder is RPN (Reverse Polish Notation) in fact. See
  * 	wiki for more information.
- * 
+ *
+ * Using both inOrder and postOrder Iterators.
+ *
  * @author Jan Kurš
  *
  */
@@ -30,6 +32,8 @@ public class ArithmeticExpressionPrinter {
 	 * Print an expression in classical notation, e.g. (3+1).
 	 * 
 	 * The "(" and ")" is used to preserve priorities.
+	 *
+	 * Using inOrder Iterator.
 	 * 
 	 * @return String in classical "inOrder" format.
 	 */
@@ -48,7 +52,9 @@ public class ArithmeticExpressionPrinter {
 	 *
 	 * Please note, the "(" and ")" is no longer necessary, because
 	 * 	RPN does not need them :)
-	 * 
+	 *
+	 * Using postOrder Iterator.
+	 *
 	 * @return string in "postOrder" (RPN) format.
 	 */
 	public String printPostOrder() {

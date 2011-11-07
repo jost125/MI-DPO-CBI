@@ -4,7 +4,9 @@ import cvut.fit.dpo.arithmetic.iterator.InOrderIterator;
 import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
 
 /**
- * Represents any Operand of ArithmeticExpression.
+ * Represents any Operand of ArithmeticExpression (number or binary operator).
+ *
+ * Its the "Component" from Composite pattern.
  *
  * @author Jan Machala <jan.machala@email.cz>
  */

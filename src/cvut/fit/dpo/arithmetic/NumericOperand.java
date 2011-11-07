@@ -6,7 +6,9 @@ import cvut.fit.dpo.arithmetic.iterator.NumericPostOrderIterator;
 import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
 
 /**
- * Represents number in the arithmetic expression
+ * Represents number in the arithmetic expression.
+ *
+ * It the "Leaf" from Composite pattern.
  * 
  * @author Jan Kurš
  */

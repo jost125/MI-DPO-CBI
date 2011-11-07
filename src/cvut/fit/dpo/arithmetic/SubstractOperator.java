@@ -2,8 +2,8 @@ package cvut.fit.dpo.arithmetic;
 
 import cvut.fit.dpo.arithmetic.iterator.InOrderIterator;
 import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
-import cvut.fit.dpo.arithmetic.iterator.SubtractInOrderIterator;
-import cvut.fit.dpo.arithmetic.iterator.SubtractPostOrderIterator;
+import cvut.fit.dpo.arithmetic.iterator.SubstractInOrderIterator;
+import cvut.fit.dpo.arithmetic.iterator.SubstractPostOrderIterator;
 
 /**
  * Represents - operation
@@ -31,7 +31,7 @@ public class SubstractOperator extends BinaryOperator {
 	 */
 	@Override
 	public InOrderIterator createInOrderIterator() {
-		return new SubtractInOrderIterator(this);
+		return new SubstractInOrderIterator(this);
 	}
 
 	/**
@@ -39,6 +39,6 @@ public class SubstractOperator extends BinaryOperator {
 	 */
 	@Override
 	public PostOrderIterator createPostOrderIterator() {
-		return new SubtractPostOrderIterator(this);
+		return new SubstractPostOrderIterator(this);
 	}
 }

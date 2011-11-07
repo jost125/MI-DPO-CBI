@@ -1,25 +1,26 @@
 package cvut.fit.dpo.arithmetic.iterator;
 
 import cvut.fit.dpo.arithmetic.BinaryOperator;
-import cvut.fit.dpo.arithmetic.elements.AddOperation;
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
+import cvut.fit.dpo.arithmetic.elements.SubstractOperation;
 
 /**
  * Concrete iterator returns expression elements in format:
- * ( firstOperand + secondOperand )
+ * ( firstOperand - secondOperand )
  *
  * where operands have its own iterators depending on operand type.
  *
  * @author Jan Machala <jan.machala@email.cz>
  */
-public class AddInOrderIterator extends BinaryInOrderIterator {
+public class SubstractInOrderIterator extends BinaryInOrderIterator {
 
-	public AddInOrderIterator(BinaryOperator operand) {
+	public SubstractInOrderIterator(BinaryOperator operand) {
 		super(operand);
 	}
 
 	@Override
 	protected ExpressionElement getSignOperation() {
-		return new AddOperation();
+		return new SubstractOperation();
 	}
+
 }

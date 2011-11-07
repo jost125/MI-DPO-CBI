@@ -4,7 +4,7 @@ import cvut.fit.dpo.arithmetic.NumericOperand;
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 
 /**
- * Delegate to NumericIterator.
+ * Delegate to NumericIterator (to reduce DRY).
  *
  * @author Jan Machala <jan.machala@email.cz>
  */
