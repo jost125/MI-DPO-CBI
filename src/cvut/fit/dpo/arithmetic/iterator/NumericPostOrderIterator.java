@@ -1,6 +1,6 @@
 package cvut.fit.dpo.arithmetic.iterator;
 
-import cvut.fit.dpo.arithmetic.iterator.states.LeafIteratorState;
+import cvut.fit.dpo.arithmetic.iterator.states.OperandIteratorState;
 import cvut.fit.dpo.arithmetic.NumericOperand;
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 import cvut.fit.dpo.arithmetic.elements.Number;
@@ -9,7 +9,7 @@ public class NumericPostOrderIterator extends PostOrderIterator {
 
 	private ExpressionElement current;
 
-	private LeafIteratorState state = LeafIteratorState.OPENED;
+	private OperandIteratorState state = OperandIteratorState.OPENED;
 
 	public NumericPostOrderIterator(NumericOperand operand) {
 		super(operand);
@@ -18,7 +18,7 @@ public class NumericPostOrderIterator extends PostOrderIterator {
 
 	@Override
 	public boolean hasNext() {
-		return !(state == LeafIteratorState.CLOSED);
+		return !(state == OperandIteratorState.CLOSED);
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class NumericPostOrderIterator extends PostOrderIterator {
 		switch (state) {
 			case OPENED:
 				current = new Number(numericOperand.getValue());
-				state = LeafIteratorState.CLOSED;
+				state = OperandIteratorState.CLOSED;
 				break;
 		}
 		

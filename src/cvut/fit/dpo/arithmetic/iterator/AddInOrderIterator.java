@@ -14,5 +14,4 @@ public class AddInOrderIterator extends BinaryInOrderIterator {
 	protected ExpressionElement getSignOperation() {
 		return new AddOperation();
 	}
-
 }

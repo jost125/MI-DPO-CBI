@@ -4,13 +4,13 @@ import cvut.fit.dpo.arithmetic.BinaryOperator;
 import cvut.fit.dpo.arithmetic.elements.CloseBracketOperation;
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 import cvut.fit.dpo.arithmetic.elements.OpenBracketOperation;
-import cvut.fit.dpo.arithmetic.iterator.states.BinaryIteratorState;
+import cvut.fit.dpo.arithmetic.iterator.states.OperandIteratorState;
 
 abstract public class BinaryInOrderIterator extends InOrderIterator {
 
 	private ExpressionElement current;
 
-	private BinaryIteratorState state = BinaryIteratorState.OPENED;
+	private OperandIteratorState state = OperandIteratorState.OPENED;
 
 	public BinaryInOrderIterator(BinaryOperator operand) {
 		super(operand);
@@ -19,7 +19,7 @@ abstract public class BinaryInOrderIterator extends InOrderIterator {
 
 	@Override
 	public boolean hasNext() {
-		return !(state == BinaryIteratorState.CLOSED);
+		return !(state == OperandIteratorState.CLOSED);
 	}
 	
 	abstract protected ExpressionElement getSignOperation();
@@ -31,7 +31,7 @@ abstract public class BinaryInOrderIterator extends InOrderIterator {
 		switch (state) {
 			case OPENED:
 				current = new OpenBracketOperation();
-				state = BinaryIteratorState.IN_LEFT_OPERAND;
+				state = OperandIteratorState.IN_LEFT_OPERAND;
 				break;
 			case IN_LEFT_OPERAND:
 				binaryOperand = (BinaryOperator)operand;
@@ -40,7 +40,7 @@ abstract public class BinaryInOrderIterator extends InOrderIterator {
 					current = binaryOperand.getFirstOperand().getInOrderIterator().next();
 				} else {
 					current = getSignOperation();
-					state = BinaryIteratorState.IN_RIGHT_OPERAND;
+					state = OperandIteratorState.IN_RIGHT_OPERAND;
 				}
 				break;
 			case IN_RIGHT_OPERAND:
@@ -50,7 +50,7 @@ abstract public class BinaryInOrderIterator extends InOrderIterator {
 					current = binaryOperand.getSecondOperand().getInOrderIterator().next();
 				} else {
 					current = new CloseBracketOperation();
-					state = BinaryIteratorState.CLOSED;
+					state = OperandIteratorState.CLOSED;
 				}
 				break;
 		}

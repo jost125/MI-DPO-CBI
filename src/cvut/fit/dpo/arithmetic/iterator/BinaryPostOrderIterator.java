@@ -2,13 +2,13 @@ package cvut.fit.dpo.arithmetic.iterator;
 
 import cvut.fit.dpo.arithmetic.BinaryOperator;
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
-import cvut.fit.dpo.arithmetic.iterator.states.BinaryIteratorState;
+import cvut.fit.dpo.arithmetic.iterator.states.OperandIteratorState;
 
 abstract public class BinaryPostOrderIterator extends PostOrderIterator {
 
 	private ExpressionElement current;
 
-	private BinaryIteratorState state = BinaryIteratorState.IN_LEFT_OPERAND;
+	private OperandIteratorState state = OperandIteratorState.IN_LEFT_OPERAND;
 
 	public BinaryPostOrderIterator(BinaryOperator operand) {
 		super(operand);
@@ -17,7 +17,7 @@ abstract public class BinaryPostOrderIterator extends PostOrderIterator {
 
 	@Override
 	public boolean hasNext() {
-		return !(state == BinaryIteratorState.CLOSED);
+		return !(state == OperandIteratorState.CLOSED);
 	}
 	
 	abstract protected ExpressionElement getSignOperation();
@@ -33,7 +33,7 @@ abstract public class BinaryPostOrderIterator extends PostOrderIterator {
 				if (binaryOperand.getFirstOperand().getPostOrderIterator().hasNext()) {
 					current = binaryOperand.getFirstOperand().getPostOrderIterator().next();
 					if (!binaryOperand.getFirstOperand().getPostOrderIterator().hasNext()) {
-						state = BinaryIteratorState.IN_RIGHT_OPERAND;
+						state = OperandIteratorState.IN_RIGHT_OPERAND;
 					}
 				}
 				break;
@@ -44,7 +44,7 @@ abstract public class BinaryPostOrderIterator extends PostOrderIterator {
 					current = binaryOperand.getSecondOperand().getPostOrderIterator().next();
 				} else {
 					current = getSignOperation();
-					state = BinaryIteratorState.CLOSED;
+					state = OperandIteratorState.CLOSED;
 				}
 				break;
 		}

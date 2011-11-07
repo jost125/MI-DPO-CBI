@@ -14,5 +14,4 @@ public class AddPostOrderIterator extends BinaryPostOrderIterator {
 	protected ExpressionElement getSignOperation() {
 		return new AddOperation();
 	}
-
 }

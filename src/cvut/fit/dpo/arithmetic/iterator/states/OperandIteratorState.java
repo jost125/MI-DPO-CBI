@@ -8,7 +8,7 @@ package cvut.fit.dpo.arithmetic.iterator.states;
  *
  * @author Jan Machala <jan.machala@email.cz>
  */
-public enum BinaryIteratorState {
+public enum OperandIteratorState {
 	OPENED,
 	IN_LEFT_OPERAND,
 	IN_RIGHT_OPERAND,

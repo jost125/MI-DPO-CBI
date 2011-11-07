@@ -1,15 +1,15 @@
 package cvut.fit.dpo.arithmetic.iterator;
 
-import cvut.fit.dpo.arithmetic.iterator.states.LeafIteratorState;
 import cvut.fit.dpo.arithmetic.NumericOperand;
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 import cvut.fit.dpo.arithmetic.elements.Number;
+import cvut.fit.dpo.arithmetic.iterator.states.OperandIteratorState;
 
 public class NumericInOrderIterator extends InOrderIterator {
 
 	private ExpressionElement current;
 
-	private LeafIteratorState state = LeafIteratorState.OPENED;
+	private OperandIteratorState state = OperandIteratorState.OPENED;
 
 	public NumericInOrderIterator(NumericOperand operand) {
 		super(operand);
@@ -18,7 +18,7 @@ public class NumericInOrderIterator extends InOrderIterator {
 
 	@Override
 	public boolean hasNext() {
-		return !(state == LeafIteratorState.CLOSED);
+		return !(state == OperandIteratorState.CLOSED);
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class NumericInOrderIterator extends InOrderIterator {
 		switch (state) {
 			case OPENED:
 				current = new Number(numericOperand.getValue());
-				state = LeafIteratorState.CLOSED;
+				state = OperandIteratorState.CLOSED;
 				break;
 		}
 		
