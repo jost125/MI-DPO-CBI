@@ -4,7 +4,10 @@ import cvut.fit.dpo.arithmetic.AddOperator;
 import cvut.fit.dpo.arithmetic.ArithmeticExpression;
 import cvut.fit.dpo.arithmetic.BinaryOperator;
 import cvut.fit.dpo.arithmetic.NumericOperand;
+import cvut.fit.dpo.arithmetic.Operand;
 import cvut.fit.dpo.arithmetic.SubstractOperator;
+import java.util.Scanner;
+import java.util.Stack;
 
 
 /**
@@ -68,7 +71,52 @@ public class ArithmeticExpressionCreator
 	 */
 	public ArithmeticExpression createExpressionFromRPN(String input)
 	{
-		// Good entry point for Builder :)
-		throw new UnsupportedOperationException("Don't know how to do it :(");
+
+		if (input.length() == 0) {
+			throw new IllegalArgumentException();
+		}
+
+		Stack<Operand> stack = new Stack<Operand>();
+
+		for (Scanner scanner = new Scanner(input); scanner.hasNext();) {
+			String item = scanner.next();
+
+			Integer integer = this.tryParseInteger(item);
+			if (integer != null) {
+				stack.push(new NumericOperand(integer));
+			} else if (item.length() > 1) {
+				throw new IllegalArgumentException();
+			} else if (item.charAt(0) == '+') {
+				Operand right = stack.pop();
+				Operand left = stack.pop();
+				Operand result = new AddOperator(left, right);
+				stack.push(result);
+			} else if (item.charAt(0) == '-') {
+				Operand right = stack.pop();
+				Operand left = stack.pop();
+				Operand result = new SubstractOperator(left, right);
+				stack.push(result);
+			}
+		}
+		
+		ArithmeticExpression expression = new ArithmeticExpression();
+
+		expression.setRoot(stack.pop());
+
+		return expression;
+	}
+
+	/**
+	 * Java WTF with non existing tryParse on Integer class.
+	 *
+	 * @param integer
+	 * @return
+	 */
+	private Integer tryParseInteger(String integer) {
+		try {
+			return Integer.parseInt(integer);
+		} catch (NumberFormatException ex) {
+			return null;
+		}
 	}
 }
