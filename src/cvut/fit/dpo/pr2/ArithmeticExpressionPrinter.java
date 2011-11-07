@@ -18,21 +18,11 @@ import java.util.Iterator;
  * @author Jan Kurš
  *
  */
-public class ArithmeticExpressionPrinter
-{
-	private static final String ANY_BINARY_OPERATOR_STRING = "b";
-	private static final String SUBSTRACT_OPERATOR_STRING = "-";
-	private static final String PLUS_OPERATOR_STRING = "+";
+public class ArithmeticExpressionPrinter {
 
 	private ArithmeticExpression expression;
 
-	public ArithmeticExpressionPrinter(ArithmeticExpression expression)
-	{
-		setExpression(expression);
-	}
-
-	private void setExpression(ArithmeticExpression expression)
-	{
+	public ArithmeticExpressionPrinter(ArithmeticExpression expression) {
 		this.expression = expression;
 	}
 
@@ -43,8 +33,7 @@ public class ArithmeticExpressionPrinter
 	 * 
 	 * @return String in classical "inOrder" format.
 	 */
-	public String printInOrder()
-	{
+	public String printInOrder() {
 
 		StringBuilder sb = new StringBuilder();
 		for (Iterator<ExpressionElement> it = expression.getInOrderIterator(); it.hasNext();) {
@@ -62,8 +51,7 @@ public class ArithmeticExpressionPrinter
 	 * 
 	 * @return string in "postOrder" (RPN) format.
 	 */
-	public String printPostOrder()
-	{
+	public String printPostOrder() {
 		StringBuilder sb = new StringBuilder();
 		for (Iterator<ExpressionElement> it = expression.getPostOrderIterator(); it.hasNext();) {
 			sb.append(it.next().stringValue());

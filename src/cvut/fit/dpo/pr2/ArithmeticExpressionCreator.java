@@ -9,30 +9,28 @@ import cvut.fit.dpo.arithmetic.SubstractOperator;
 import java.util.Scanner;
 import java.util.Stack;
 
-
 /**
  * Stupid class which can create some {@link ArithmeticExpression}s.
  * 
  * @author Jan Kurš
  *
  */
-public class ArithmeticExpressionCreator
-{
+public class ArithmeticExpressionCreator {
+
 	/**
 	 * Creates 3 - (1 + 2)
 	 * 
 	 * This is ugly. I don't like creating expressions in this
 	 * 	form. I never know, what expression I have created...
 	 */
-	public ArithmeticExpression createExpression1()
-	{
+	public ArithmeticExpression createExpression1() {
 		NumericOperand op1 = new NumericOperand(1);
 		NumericOperand op2 = new NumericOperand(2);
 		NumericOperand op3 = new NumericOperand(3);
-		
+
 		BinaryOperator o2 = new AddOperator(op1, op2);
 		BinaryOperator o1 = new SubstractOperator(op3, o2);
-		
+
 		return new ArithmeticExpression(o1);
 	}
 
@@ -42,19 +40,18 @@ public class ArithmeticExpressionCreator
 	 * This is ugly. I don't like creating expressions in this
 	 * 	form. I never know, what expression I have created...
 	 */
-	public ArithmeticExpression createExpression2()
-	{
-		
+	public ArithmeticExpression createExpression2() {
+
 		NumericOperand op1 = new NumericOperand(1);
 		NumericOperand op2 = new NumericOperand(2);
 		NumericOperand op3 = new NumericOperand(3);
-		
+
 		BinaryOperator o1 = new SubstractOperator(op3, op1);
 		BinaryOperator o2 = new AddOperator(o1, op2);
-		
+
 		return new ArithmeticExpression(o2);
 	}
-	
+
 	/**
 	 * Creates any expression from the RPN input. This is nice and
 	 * 	universal. 
@@ -64,8 +61,7 @@ public class ArithmeticExpressionCreator
 	 * @param input in Reverse Polish Notation
 	 * @return {@link ArithmeticExpression} equivalent to the RPN input.
 	 */
-	public ArithmeticExpression createExpressionFromRPN(String input)
-	{
+	public ArithmeticExpression createExpressionFromRPN(String input) {
 
 		if (input.length() == 0) {
 			throw new IllegalArgumentException();
@@ -77,7 +73,7 @@ public class ArithmeticExpressionCreator
 			String item = scanner.next();
 
 			Integer integer = this.tryParseInteger(item);
-			
+
 			if (integer != null) {
 				stack.push(new NumericOperand(integer));
 
