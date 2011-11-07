@@ -95,7 +95,10 @@ public class ArithmeticExpressionCreator
 				throw new IllegalArgumentException();
 			}
 		}
-		
+
+		if (stack.size() != 1) {
+			throw new IllegalArgumentException();
+		}
 		return new ArithmeticExpression(stack.pop());
 	}
 
